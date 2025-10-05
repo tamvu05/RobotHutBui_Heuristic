@@ -119,6 +119,11 @@ int main() {
     readFile(fn);
     aStar();
     
+    if (!ok) {
+        cout << "khong tim duoc duong di";
+        return 0;
+    }
+
     int i = endX, j = endY;
     while (i != startX || j != startY) {
         cells[i][j].isRoad = true;
@@ -128,11 +133,14 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++)
-            if (cells[i][j].isRoad) cout << '*' << ' ';
+            if (i == startX && j == startX) cout << 'S' << ' ';
+            else if (i == endX && j == endX) cout << 'E' << ' ';
+            else if (cells[i][j].isRoad) cout << '*' << ' ';
             else if (cells[i][j].isObstacle) cout << '1' << ' ';
             else cout << '0' << ' ';
         cout << endl;
     }
+
     cout << "Chi phi: " << cells[endX][endY].g;
 
     return 0;
